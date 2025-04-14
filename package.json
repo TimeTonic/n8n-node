@@ -1,0 +1,61 @@
+{
+  "name": "n8n-nodes-timetonic",
+  "version": "0.1.0",
+  "description": "N8N node to interact with the Timetonic SaaS platform",
+  "keywords": [
+    "n8n",
+    "node",
+    "n8n-community-node-package",
+    "timetonic",
+    "saas"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "author": {
+    "name": "Timetonic",
+    "email": "info@timetonic.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timetonic/n8n-nodes-timetonic.git"
+  },
+  "main": "index.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "build": "tsc && cp -r nodes/Timetonic/*.svg dist/nodes/Timetonic/",
+    "dev": "tsc --watch",
+    "lint": "eslint nodes credentials --ext .ts",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/TimetonicCredentials.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Timetonic/Timetonic.node.js"
+    ]
+  },
+  "dependencies": {
+    "n8n-core": "^0.125.0",
+    "n8n-workflow": "^0.107.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.39",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "eslint": "^8.17.0",
+    "ts-node": "^10.8.1",
+    "typescript": "~4.7.3"
+  },
+  "n8n-community-node-package": {
+    "ignorePostInstallIssues": true,
+    "packageVersion": "0.1.0"
+  }
+}
