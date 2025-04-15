@@ -12,7 +12,7 @@ export class Timetonic implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'Timetonic',
 		name: 'timetonic',
-		icon: 'timetonic.svg',
+		icon: 'fa:book',
 		group: ['transform'],
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
