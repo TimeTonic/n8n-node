@@ -7,7 +7,7 @@ class Timetonic {
         this.description = {
             displayName: 'Timetonic',
             name: 'timetonic',
-            icon: 'file:timetonic.svg',
+            icon: 'timetonic.svg',
             group: ['transform'],
             version: 1,
             subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',

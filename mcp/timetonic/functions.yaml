@@ -1,0 +1,167 @@
+functions:
+  - name: getAllBooks
+    description: Get a list of all books in Timetonic
+    parameters:
+      type: object
+      properties:
+        sstamp:
+          type: string
+          description: If provided, API will return books with server stamp > sstamp
+        bookCode:
+          type: string
+          description: If provided, will return info only for that book
+        bookOwner:
+          type: string
+          description: If provided, will return info only for books with that owner
+      required: []
+  
+  - name: getBookInfo
+    description: Get detailed information about a specific book
+    parameters:
+      type: object
+      properties:
+        bookCode:
+          type: string
+          description: The code of the book (b_c parameter)
+        bookOwner:
+          type: string
+          description: The owner of the book (b_o parameter)
+      required: [bookCode, bookOwner]
+  
+  - name: getBookTables
+    description: Get all tables in a specific book
+    parameters:
+      type: object
+      properties:
+        bookCode:
+          type: string
+          description: The code of the book (b_c parameter)
+        bookOwner:
+          type: string
+          description: The owner of the book (b_o parameter)
+        externViews:
+          type: boolean
+          description: Whether to include external view shortcuts
+          default: false
+        format:
+          type: string
+          description: The format of the response (empty or 'android')
+          enum: ["", "android"]
+          default: ""
+        includeFields:
+          type: boolean
+          description: Whether to include field definitions in the response
+          default: false
+        includeEnums:
+          type: boolean
+          description: Whether to include field enumColors definitions in the response
+          default: true
+        getRowIds:
+          type: boolean
+          description: Whether to include view/rows associations in the response
+          default: false
+      required: [bookCode, bookOwner]
+  
+  - name: sendMsg
+    description: Send a message to a book
+    parameters:
+      type: object
+      properties:
+        message:
+          type: string
+          description: The message text to send
+        bookCode:
+          type: string
+          description: The code of the book (b_c parameter)
+        bookOwner:
+          type: string
+          description: The owner of the book (b_o parameter)
+        msgId:
+          type: number
+          description: ID of message, used for message edition
+        body:
+          type: string
+          description: Message body (for emails for example)
+        nbMedias:
+          type: number
+          description: Number of media files to be attached to the message
+          default: 0
+        nbDocs:
+          type: number
+          description: Number of documents to be attached to the message
+          default: 0
+        uuid:
+          type: string
+          description: Custom UUID for the message
+        event:
+          type: object
+          description: JSON object describing an event
+          properties:
+            eventStart:
+              type: number
+              description: Event start time as Unix timestamp
+            eventEnd:
+              type: number
+              description: Event end time as Unix timestamp
+            eventTimezone:
+              type: string
+              description: Timezone for the event
+      required: [message, bookCode, bookOwner]
+  
+  - name: getTableValues
+    description: Get values from a table
+    parameters:
+      type: object
+      properties:
+        catId:
+          type: string
+          description: The ID of the table
+        bookOwner:
+          type: string
+          description: The owner of the book (usually "zo")
+        filterRowIds:
+          type: string
+          description: Specific row IDs to filter (comma-separated)
+        skipAuthorizationForFiles:
+          type: boolean
+          description: Whether to skip authorization checks for files
+          default: true
+        version:
+          type: string
+          description: API version
+          default: "6.49q/6.49"
+      required: [catId, bookOwner]
+  
+  - name: createOrUpdateTableRow
+    description: Create or update a row in a table
+    parameters:
+      type: object
+      properties:
+        catId:
+          type: string
+          description: The ID of the table
+        bookOwner:
+          type: string
+          description: The owner of the book (usually "zo")
+        fieldValues:
+          type: object
+          description: The field values for this row as key-value pairs
+        rowId:
+          type: string
+          description: The ID of the row to update. For new rows, use a temporary ID (e.g. "tmp-123")
+        returnUpdatedRows:
+          type: boolean
+          description: Whether to return updated rows in the response
+          default: true
+        filterRowIds:
+          type: string
+          description: Specific row IDs to filter (comma-separated)
+        skipAuthorizationForFiles:
+          type: boolean
+          description: Whether to skip authorization checks for files
+          default: true
+        version:
+          type: string
+          description: API version
+          default: "6.49q/6.49"
+      required: [catId, bookOwner, fieldValues, rowId] 
