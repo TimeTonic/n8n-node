@@ -10,19 +10,28 @@ class Timetonic {
             icon: 'file:timetonic.svg',
             group: ['transform'],
             version: 1,
+            usableAsTool: true,
             subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
             description: 'Interact with Timetonic SaaS platform',
             defaults: {
                 name: 'Timetonic',
             },
-            inputs: ['main'],
-            outputs: ['main'],
+            inputs: ["main" /* NodeConnectionType.Main */],
+            outputs: ["main" /* NodeConnectionType.Main */],
             credentials: [
                 {
                     name: 'timetonicCredentials',
                     required: true,
                 },
             ],
+            // Add AI agent tool metadata
+            codex: {
+                categories: ['Communication'],
+                subcategories: {
+                    Communication: ['CRM'],
+                },
+                alias: ['timetonic', 'saas'],
+            },
             properties: [
                 {
                     displayName: 'Resource',

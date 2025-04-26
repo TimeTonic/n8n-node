@@ -5,6 +5,7 @@ import {
 	INodeTypeDescription,
 	NodeOperationError,
 	IHttpRequestMethods,
+	NodeConnectionType,
 } from 'n8n-workflow';
 import { IDataObject } from 'n8n-workflow';
 
@@ -15,19 +16,28 @@ export class Timetonic implements INodeType {
 		icon: 'file:timetonic.svg',
 		group: ['transform'],
 		version: 1,
+		usableAsTool: true,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description: 'Interact with Timetonic SaaS platform',
 		defaults: {
 			name: 'Timetonic',
 		},
-		inputs: ['main'],
-		outputs: ['main'],
+		inputs: [NodeConnectionType.Main],
+		outputs: [NodeConnectionType.Main],
 		credentials: [
 			{
 				name: 'timetonicCredentials',
 				required: true,
 			},
 		],
+		// Add AI agent tool metadata
+		codex: {
+			categories: ['Communication'],
+			subcategories: {
+				Communication: ['CRM'],
+			},
+			alias: ['timetonic', 'saas'],
+		},
 		properties: [
 			{
 				displayName: 'Resource',
