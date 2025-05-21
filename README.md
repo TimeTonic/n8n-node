@@ -4,7 +4,7 @@ This node allows you to interact with the Timetonic SaaS platform through n8n wo
 
 ## Prerequisites
 
-- Node.js (v18.x or later)
+- Node.js (v16.x or later)
 - npm
 - An account on Timetonic platform
 - Session Key for Timetonic API
@@ -20,6 +20,8 @@ This node allows you to interact with the Timetonic SaaS platform through n8n wo
    ```
    npm run build
    ```
+
+For detailed installation instructions, see [INSTALL.md](INSTALL.md).
 
 ## Development
 
@@ -45,19 +47,17 @@ Books in Timetonic are containers where entries are stored.
 #### Operations
 
 - **Get All Books**: Retrieve a list of all books
-- **Get Book**: Retrieve a book by ID
-- **Create Book**: Create a new book with a specified name, description, and color
+  - Optional filtering by server stamp, book code, and book owner
+  
+- **Get Book Info**: Retrieve detailed information about a specific book
 
-### Entry
+- **Get Book Tables**: Retrieve all tables in a specific book
+  - Options for including external views, fields, enums, and row IDs
+  - Format options (Default or Android)
 
-Entries are the individual records stored in Timetonic books.
-
-#### Operations
-
-- **Get Entry**: Retrieve an entry by ID
-- **Create Entry**: Create a new entry in a book
-- **Update Entry**: Update an existing entry
-- **Delete Entry**: Delete an entry
+- **Send Message**: Send a message to a book
+  - Support for message editing (via message ID)
+  - Options for message body, media files, documents, UUID, and event data
 
 ### Table
 
@@ -82,6 +82,15 @@ Tables in Timetonic allow you to store data in a structured format.
 - **API URL**: The Timetonic API URL (defaults to https://timetonic.com/live/api.php)
 - **User Context**: User context identifier (o_u parameter, defaults to 'zo')
 - **User Type**: User type (u_c parameter, defaults to 'zo')
+- **API Version**: Version of the Timetonic API (defaults to '1.47')
+
+## MCP Server Integration
+
+This node can be used with n8n's MCP (Multi-Component Protocol) Server to create an AI-powered interface for Timetonic. See [example-timetonic-mcp-server.md](example-timetonic-mcp-server.md) for details on setting up an MCP server with this node.
+
+## Custom Parameters
+
+Both Table operations support adding custom parameters to the API requests, allowing for flexibility when working with the Timetonic API.
 
 ## License
 
