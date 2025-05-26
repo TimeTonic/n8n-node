@@ -592,10 +592,13 @@ export class Timetonic implements INodeType {
 						// Make the API request using URL-encoded format
 						const version = additionalFields.version || '6.49q/6.49';
 						const filterRowIds = additionalFields.filterRowIds || '';
-						const skipAuthorizationForFiles = additionalFields.skipAuthorizationForFiles !== false ? 'true' : 'false';
-						
 						// Build the request body
-						let bodyParams = `req=getTableValues&version=${encodeURIComponent(version as string)}&o_u=${encodeURIComponent(userContext)}&u_c=${encodeURIComponent(userType)}&catId=${encodeURIComponent(catId)}&b_o=${encodeURIComponent(bookOwner)}&sesskey=${encodeURIComponent(sessKey)}&skipAuthorizationForFiles=${encodeURIComponent(skipAuthorizationForFiles)}`;
+						let bodyParams = `req=getTableValues&version=${encodeURIComponent(version as string)}&o_u=${encodeURIComponent(userContext)}&u_c=${encodeURIComponent(userType)}&catId=${encodeURIComponent(catId)}&b_o=${encodeURIComponent(bookOwner)}&sesskey=${encodeURIComponent(sessKey)}`;
+						
+						// Only add skipAuthorizationForFiles if it's true
+						if (additionalFields.skipAuthorizationForFiles === true) {
+							bodyParams += `&skipAuthorizationForFiles=true`;
+						}
 						
 						if (filterRowIds) {
 							bodyParams += `&filterRowIds=${encodeURIComponent(filterRowIds as string)}`;
