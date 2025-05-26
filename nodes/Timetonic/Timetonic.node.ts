@@ -590,7 +590,7 @@ export class Timetonic implements INodeType {
 						const customParametersValues = this.getNodeParameter('customParameters.parameters', i, []) as IDataObject[];
 						
 						// Make the API request using URL-encoded format
-						const version = additionalFields.version || '6.49q/6.49';
+						const version = additionalFields.version || '6.49q/6.49'; 
 						const filterRowIds = additionalFields.filterRowIds || '';
 						// Build the request body
 						let bodyParams = `req=getTableValues&version=${encodeURIComponent(version as string)}&o_u=${encodeURIComponent(userContext)}&u_c=${encodeURIComponent(userType)}&catId=${encodeURIComponent(catId)}&b_o=${encodeURIComponent(bookOwner)}&sesskey=${encodeURIComponent(sessKey)}`;
